@@ -1,17 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import {BrowserRouter,Switch,Route} from 'react-router-dom';
+
+import AmyiI from './pages/AmyiI';
+import AmyiII from './pages/AmyiII';
+import AmyiIII from './pages/AmyiIII';
+import MiniRanking from './pages/MiniRanking';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <Switch>
+        <Route path="/" exact={true} component={AmyiI}/>
+        <Route path="/amyii" exact={true} component={AmyiII}/>
+        <Route path="/amyiii" exact={true} component={AmyiIII}/>
+        <Route path="/miniranking" exact={true} component={MiniRanking}/>
+      </Switch>
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
