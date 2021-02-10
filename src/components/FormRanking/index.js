@@ -13,14 +13,19 @@ const Container = styled.div`
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    margin: 0px 10px;
 
     h1 {
       font-size: 25pt;
       color: #6b6d6b;
     }
-    img{
-        width: 100%;
-        height: auto;
+    img {
+      width: 100%;
+      height: auto;
+    }
+    .setIimage {
+      width: 200px;
+      height: auto;
     }
   }
   h4 {
@@ -34,7 +39,7 @@ const Container = styled.div`
     font-weight: 400;
 
     input {
-        margin: 10px;
+      margin: 10px;
     }
   }
 `;
@@ -44,6 +49,7 @@ export default function FormRanking({
   name,
   description,
   image,
+  setImage,
   note,
   alt,
 }) {
@@ -51,7 +57,11 @@ export default function FormRanking({
     <Container>
       <div id="content-image">
         <h1>{title}</h1>
-        <img src={image} alt={alt} />
+        {setImage ? (
+          <img className="setIimage" src={image} alt={alt} />
+        ) : (
+          <img src={image} alt={alt} />
+        )}
       </div>
       <h4>{name}</h4>
       <span>{description}</span>
