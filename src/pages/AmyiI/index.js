@@ -1,11 +1,15 @@
-import React from 'react';
+import React from "react";
+import { GlobalStyles } from "../../styles/GlobalApp";
+import { Container } from "./styles";
+import { HeaderAmyi } from "../../components";
 
 export default function AmyiI() {
   return (
-    <div className="App">
-      <header className="App-header">
-      AmyiI
-      </header>
-    </div>
+    <>
+      <GlobalStyles />
+      <Container>
+        <HeaderAmyi />
+      </Container>
+    </>
   );
 }
