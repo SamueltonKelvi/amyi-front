@@ -1,13 +1,15 @@
 import React from 'react';
 import {GlobalStyles} from '../../styles/GlobalApp';
+import {Container} from './styles';
+import {ModalAmyi} from '../../components';
 
 export default function MiniRanking() {
   return (
-    <div>
+    <>
       <GlobalStyles />
-      <header className="App-header">
-      MiniRanking
-      </header>
-    </div>
+      <Container>
+        <ModalAmyi title="Amyi II - Pimenta rosa, angelica, lactona, patchouli"/>
+      </Container>
+    </>
   );
 }
