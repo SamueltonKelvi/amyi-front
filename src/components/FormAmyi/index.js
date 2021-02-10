@@ -116,7 +116,7 @@ export default function FormAmyi({
   questionOne,
   questionTwo,
   label,
-  data
+  data,
 }) {
   const [value, setValue] = React.useState([]);
   const [slider, setSlider] = React.useState("0");
@@ -148,16 +148,12 @@ export default function FormAmyi({
 
   const handleSaveProgress = () => {
     if (value.length === 0) {
-      alert("Selecione as cores desejadas");
+      alert("Selecione no mínimo uma das cores");
     } else {
+      setModal(false);
       let getData = JSON.stringify(value);
       localStorage.setItem("amyi@web", getData);
     }
-  };
-
-  const handleNextPage = () => {
-    setModal(true);
-    handleNext();
   };
 
   React.useEffect(() => {
@@ -165,6 +161,14 @@ export default function FormAmyi({
       localStorage.setItem("amyi@web", value);
     }
   }, []);
+
+  const handleNextPage = () => {
+    if (value.length === 0) {
+      alert("Selecione no mínimo uma das cores");
+    } else {
+      setModal(true);
+    }
+  };
 
   const handleClose = () => {
     setModal(false);

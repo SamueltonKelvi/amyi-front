@@ -19,40 +19,40 @@ const Container = styled.div`
     height: auto;
     margin: 40% auto;
     background-color: #ffffff;
-  }
-
-  h4 {
-    font-size: 12pt;
-    margin: 10px auto;
-    font-weight: normal;
-  }
-  h2 {
-    font-size: 14pt;
-    font-weight: bold;
-    margin: auto 20%;
-  }
-  #sub-title {
-    margin: 40px 20%;
-    font-weight: normal;
-  }
-  #btn {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-
-    button {
-      width: 45%;
-      border: 2px solid #424142;
-      padding: 10px;
-      background-color: #ffffff;
+    
+    h4 {
+      font-size: 12pt;
+      margin: 10px auto;
       font-weight: normal;
     }
-    .btn-next {
+    h2 {
+      font-size: 14pt;
+      font-weight: bold;
+      margin: auto 55px;
+    }
+    #sub-title {
+      margin: 40px 20%;
       font-weight: normal;
-      background-color: #424142;
-      color: white;
+    }
+    #btn {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+
+      button {
+        width: 45%;
+        border: 2px solid #424142;
+        padding: 10px;
+        background-color: #ffffff;
+        font-weight: normal;
+      }
+      .btn-next {
+        font-weight: normal;
+        background-color: #424142;
+        color: white;
+      }
     }
   }
 
@@ -71,7 +71,7 @@ export default function ModalAmyi({ title, handleClose, handleNext }) {
         <h4 id="sub-title">Você confirma a sua escolha?</h4>
         <div id="btn">
           <button onClick={handleClose}>NÃO</button>
-          <button className="btn-next" onChange={handleNext}>
+          <button className="btn-next" onClick={handleNext}>
             SIM
           </button>
         </div>

@@ -2,7 +2,6 @@ import React from "react";
 import { GlobalStyles } from "../../styles/GlobalApp";
 import { Container } from "./styles";
 import { HeaderAmyi,FormAmyi } from "../../components";
-import IconSelect from '../../assets/checkmark.svg';
 
 export default function AmyiII() {
   const data = [
@@ -31,7 +30,6 @@ export default function AmyiII() {
           questionTwo="De 0 a 10, que nota você daria para a conexão do perfume Amyi II com você"
           label="(selecione quantas cores você desejar)"
           data={data}
-          image={IconSelect}
           />
       </Container>
     </>
