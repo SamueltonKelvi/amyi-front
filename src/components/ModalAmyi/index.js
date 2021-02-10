@@ -2,12 +2,24 @@ import React from "react";
 import styled from "styled-components";
 
 const Container = styled.div`
-  margin: 50% 10%;
-  text-align: center;
-  background-color: #ffffff;
-  box-shadow: 1px 1px 10px 1px #000000;
-  padding: 10px;
-  width: 310px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1040;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+
+  #content-modal {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    text-align: center;
+    width: 310px;
+    height: auto;
+    margin: 40% auto;
+    background-color: #ffffff;
+  }
 
   h4 {
     font-size: 12pt;
@@ -50,21 +62,19 @@ const Container = styled.div`
   }
 `;
 
-export default function ModalAmyi({ title }) {
-  const handleClose = () => {};
-
-  const handleNext = () => {};
-
+export default function ModalAmyi({ title, handleClose, handleNext }) {
   return (
     <Container>
-      <h4>Você escolheu o</h4>
-      <h2>{title}</h2>
-      <h4 id="sub-title">Você confirma a sua escolha?</h4>
-      <div id="btn">
-        <button onClick={handleClose}>NÃO</button>
-        <button className="btn-next" onChange={handleNext}>
-          SIM
-        </button>
+      <div id="content-modal">
+        <h4>Você escolheu o</h4>
+        <h2>{title}</h2>
+        <h4 id="sub-title">Você confirma a sua escolha?</h4>
+        <div id="btn">
+          <button onClick={handleClose}>NÃO</button>
+          <button className="btn-next" onChange={handleNext}>
+            SIM
+          </button>
+        </div>
       </div>
     </Container>
   );

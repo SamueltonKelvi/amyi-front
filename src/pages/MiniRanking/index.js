@@ -8,7 +8,6 @@ export default function MiniRanking() {
     <>
       <GlobalStyles />
       <Container>
-        <ModalAmyi title="Amyi II - Pimenta rosa, angelica, lactona, patchouli"/>
       </Container>
     </>
   );

@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import ModalAmyi from "../ModalAmyi";
 
 const Container = styled.div`
   display: flex;
@@ -115,12 +116,12 @@ export default function FormAmyi({
   questionOne,
   questionTwo,
   label,
-  data,
-  image,
+  data
 }) {
   const [value, setValue] = React.useState([]);
   const [slider, setSlider] = React.useState("0");
   const [description, setDescription] = React.useState("");
+  const [modal, setModal] = React.useState(false);
 
   const CheckBoxElement = (props) => {
     return (
@@ -146,7 +147,7 @@ export default function FormAmyi({
   };
 
   const handleSaveProgress = () => {
-    if (value.length == 0) {
+    if (value.length === 0) {
       alert("Selecione as cores desejadas");
     } else {
       let getData = JSON.stringify(value);
@@ -155,9 +156,8 @@ export default function FormAmyi({
   };
 
   const handleNextPage = () => {
-      let getData = JSON.stringify(slider);
-      localStorage.setItem("amyi@web", getData);
-      window.location.href='/amyii';
+    setModal(true);
+    handleNext();
   };
 
   React.useEffect(() => {
@@ -165,6 +165,17 @@ export default function FormAmyi({
       localStorage.setItem("amyi@web", value);
     }
   }, []);
+
+  const handleClose = () => {
+    setModal(false);
+  };
+
+  const handleNext = () => {
+    let getData = JSON.stringify(slider);
+    localStorage.setItem("amyi@web", getData);
+    setModal(false);
+    window.location.href = "/amyii";
+  };
 
   return (
     <Container>
@@ -209,9 +220,17 @@ export default function FormAmyi({
           />
         </div>
       </ol>
-      <button id="send-button" onClick={handleNextPage}>
-        ENVIAR RESPOSTAS
-      </button>
+      {modal ? (
+        <ModalAmyi
+          title="Amyi I - Pimenta rosa, angelica, lactona, patchouli"
+          handleClose={handleClose}
+          handleNext={handleNext}
+        />
+      ) : (
+        <button id="send-button" onClick={handleNextPage}>
+          ENVIAR RESPOSTAS
+        </button>
+      )}
       <footer />
     </Container>
   );
