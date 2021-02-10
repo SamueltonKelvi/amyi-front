@@ -1,5 +1,7 @@
 import HeaderAmyi from './HeaderAmyi';
+import FormAmyi from './FormAmyi';
 
 export {
-    HeaderAmyi
+    HeaderAmyi,
+    FormAmyi
 }
