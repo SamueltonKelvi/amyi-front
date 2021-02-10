@@ -32,10 +32,9 @@ const Container = styled.div`
       grid-template-columns: 1fr 1fr 1fr;
       margin: 20px auto;
 
-      label {
-        font-size: 10px;
+      #label-value {
+        font-size: 12px;
         z-index: 5;
-        position: relative;
       }
       .btns {
         padding: 5px;
@@ -111,16 +110,61 @@ const Container = styled.div`
   }
 `;
 
-// import IconSelect from '../../assets/checkmark.svg';
-
-export default function FormAmyi({ title, questionOne, questionTwo, label }) {
-  const [value, setValue] = React.useState("");
+export default function FormAmyi({
+  title,
+  questionOne,
+  questionTwo,
+  label,
+  data,
+  image,
+}) {
+  const [value, setValue] = React.useState([]);
   const [slider, setSlider] = React.useState("0");
-  const [select, setSelect] = React.useState(false);
+  const [description, setDescription] = React.useState("");
 
-  const handleEvent = () => {
-    console.log(`Dado aqui ${value}`);
+  const CheckBoxElement = (props) => {
+    return (
+      <div style={{ backgroundColor: props.color }}>
+        <input
+          value={props.value}
+          onChange={(text) => setValue(text.target.value)}
+          type="checkbox"
+          checked={props.checked}
+          className="btns"
+          style={
+            props.checked === true
+              ? { backgroundImage: props.image }
+              : {
+                  backgroundColor: props.color,
+                  position: "relative",
+                  zIndex: -1,
+                }
+          }
+        />
+      </div>
+    );
   };
+
+  const handleSaveProgress = () => {
+    if (value.length == 0) {
+      alert("Selecione as cores desejadas");
+    } else {
+      let getData = JSON.stringify(value);
+      localStorage.setItem("amyi@web", getData);
+    }
+  };
+
+  const handleNextPage = () => {
+      let getData = JSON.stringify(slider);
+      localStorage.setItem("amyi@web", getData);
+      window.location.href='/amyii';
+  };
+
+  React.useEffect(() => {
+    if (!value) {
+      localStorage.setItem("amyi@web", value);
+    }
+  }, []);
 
   return (
     <Container>
@@ -130,144 +174,27 @@ export default function FormAmyi({ title, questionOne, questionTwo, label }) {
         <li>{questionOne}</li>
         <label>{label}</label>
         <div id="colors">
-          <label>
-            <input
-              name="brown"
-              value={value}
-              onChange={(brown) => setValue(brown.target.value)}
-              type="checkbox"
-              className="btns"
-              onClick={handleEvent}
-              style={{ backgroundColor: "#6B5D42" }}
-            />
-            marrom
-          </label>
-          <label>
-            <input
-              name="red"
-              value="red"
-              type="checkbox"
-              className="btns"
-              onClick={handleEvent}
-              style={{ backgroundColor: "#D66163" }}
-            />
-            vermelho
-          </label>
-          <label>
-            <input
-              name="orange"
-              value="orange"
-              type="checkbox"
-              className="btns"
-              style={{ backgroundColor: "#FFA652" }}
-            />
-            laranja
-          </label>
-
-          <label>
-            <input
-              name="yellow"
-              value="yellow"
-              type="checkbox"
-              className="btns"
-              style={{ backgroundColor: "#FFF35A" }}
-            />
-            amarelo
-          </label>
-
-          <label>
-            <input
-              name="green"
-              value="green"
-              type="checkbox"
-              className="btns"
-              style={{ backgroundColor: "#94DF8C" }}
-            />
-            verde
-          </label>
-
-          <label>
-            <input
-              name="blue"
-              value="blue"
-              type="checkbox"
-              className="btns"
-              style={{ backgroundColor: "#84BACE" }}
-            />
-            azul
-          </label>
-
-          <label>
-            <input
-              name="purple"
-              value="purple"
-              type="checkbox"
-              className="btns"
-              style={{ backgroundColor: "#BD8ACE" }}
-            />
-            roxo
-          </label>
-
-          <label>
-            <input
-              name="pink"
-              value="pink"
-              type="checkbox"
-              className="btns"
-              style={{ backgroundColor: "#FF82AD" }}
-            />
-            rosa
-          </label>
-
-          <label>
-            <input
-              name="beige"
-              value="beige"
-              type="checkbox"
-              className="btns"
-              style={{ backgroundColor: "#E6D7BD" }}
-            />
-            bege
-          </label>
-
-          <label>
-            <input
-              name="grey"
-              value="grey"
-              type="checkbox"
-              className="btns"
-              style={{ backgroundColor: "#C5C6C5" }}
-            />
-            cinza
-          </label>
-
-          <label>
-            <input
-              name="black"
-              value="black"
-              type="checkbox"
-              className="btns"
-              style={{ backgroundColor: "#000000" }}
-            />
-            preto
-          </label>
-
-          <label>
-            <input
-              name="white"
-              value="white"
-              type="checkbox"
-              className="btns"
-              style={{ backgroundColor: "#FFFFFF" }}
-            />
-            branco
-          </label>
+          {data.map((item) => {
+            return (
+              <label id="label-value" key={item.id}>
+                <CheckBoxElement {...item} />
+                {item.value}
+              </label>
+            );
+          })}
         </div>
         <div id="others-colors">
           pensei em uma cor diferente
-          <input placeholder="descrição" type="text" />
+          <input
+            placeholder="descrição"
+            type="text"
+            value={description}
+            onChange={(text) => setDescription(text.target.value)}
+          />
         </div>
-        <button id="progress">SALVAR PROGRESSO</button>
+        <button id="progress" onClick={handleSaveProgress}>
+          SALVAR PROGRESSO
+        </button>
         <div id="quest">
           <li>{questionTwo}</li>
           <label>Arraste para selecionar sua nota</label>
@@ -282,7 +209,9 @@ export default function FormAmyi({ title, questionOne, questionTwo, label }) {
           />
         </div>
       </ol>
-      <button id="send-button">ENVIAR RESPOSTAS</button>
+      <button id="send-button" onClick={handleNextPage}>
+        ENVIAR RESPOSTAS
+      </button>
       <footer />
     </Container>
   );
