@@ -126,7 +126,9 @@ export default function FormAmyi({
   questionTwo,
   label,
   data,
-  image
+  image,
+  linkRouter,
+  titleModal
 }) {
   const [value, setValue] = React.useState("");
   const [slider, setSlider] = React.useState("0");
@@ -187,7 +189,7 @@ export default function FormAmyi({
     let getData = JSON.stringify(slider);
     localStorage.setItem("amyi@webSlider", getData);
     setModal(false);
-    window.location.href = "/amyii";
+    window.location.href = linkRouter;
   };
 
   return (
@@ -240,7 +242,7 @@ export default function FormAmyi({
       </ol>
       {modal ? (
         <ModalAmyi
-          title="Amyi I - Pimenta rosa, angelica, lactona, patchouli"
+          title={titleModal}
           handleClose={handleClose}
           handleNext={handleNext}
         />

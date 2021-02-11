@@ -33,6 +33,8 @@ export default function AmyiIII() {
           label="(selecione quantas cores você desejar)"
           data={data}
           image={AmyiIcon}
+          linkRouter="/miniranking"
+          titleModal="Amyi III - Pimenta rosa, angelica, lactona, patchouli"
           />
       </Container>
     </>
