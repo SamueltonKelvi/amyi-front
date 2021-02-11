@@ -86,6 +86,8 @@ export default function MiniRanking() {
       }
     }
 
+    setNote(data);
+
     handleDataSort(data);
     result.sort();
     result.reverse();
