@@ -57,7 +57,9 @@ const Container = styled.div`
       }
     }
     #others-colors {
-      margin: 30px auto;
+      display: flex;
+      flex-direction: column;
+      margin: 30px 40px;
 
       input {
         width: 80%auto;
