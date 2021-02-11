@@ -17,7 +17,7 @@ const Container = styled.div`
     text-align: center;
     width: 310px;
     height: auto;
-    margin: 40% auto;
+    margin: 20% auto;
     background-color: #ffffff;
     
     h4 {
@@ -54,12 +54,12 @@ const Container = styled.div`
         color: white;
       }
     }
-  }
 
-  @media (min-width: 720px) {
-    #content-modal{
-      margin: 20% 20%;
-      width: 60%;
+    @media (min-width: 720px) {
+      #content-modal{
+        margin: 20% 20%;
+        width: 60%;
+      }
     }
   }
 `;

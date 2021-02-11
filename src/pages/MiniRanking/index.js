@@ -10,6 +10,7 @@ import Amyi3 from "../../assets/amyi3.png";
 export default function MiniRanking() {
   const [data, setData] = React.useState([]);
   const [note, setNote] = React.useState("0");
+  const [res, setRes] = React.useState("");
   const [radio, setRadio] = React.useState(false);
   const [modal, setModal] = React.useState(false);
 
@@ -58,12 +59,6 @@ export default function MiniRanking() {
     return JSON.parse(e);
   };
 
-  const handleDataSort = (data) => {
-    let sort = data.sort();
-    let dataOrder = sort.reverse();
-    setNote(dataOrder);
-  };
-
   React.useEffect(() => {
     let storageI = localStorage.getItem("amyiI@webSlider");
     let storageII = localStorage.getItem("amyiII@webSlider");
@@ -87,10 +82,6 @@ export default function MiniRanking() {
     }
 
     setNote(data);
-
-    handleDataSort(data);
-    result.sort();
-    result.reverse();
   }, []);
 
   return (
@@ -107,7 +98,16 @@ export default function MiniRanking() {
             coração:
           </span>
         </div>
-        {result.map((item) => {
+        {result.sort((um,dois) => { 
+          if(um.note > dois.note){
+            return 1;
+          }
+          if(um.note < dois.note){
+            return -1;
+          }
+      
+          return 0;
+         }).reverse().map((item) => {
           return (
             <FormRanking
               key={item.id}

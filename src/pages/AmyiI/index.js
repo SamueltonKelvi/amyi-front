@@ -26,7 +26,7 @@ export default function AmyiI() {
       <GlobalStyles />
       <Container>
         <HeaderAmyi />
-        <FormAmyi 
+        <FormAmyi
           title="Amyi I - por Sandra Casagrande"
           questionOne="Se esse perfume tivesse uma cor, qual ela sera?"
           questionTwo="De 0 a 10, que nota você daria para a conexão do perfume Amyi II com você"
