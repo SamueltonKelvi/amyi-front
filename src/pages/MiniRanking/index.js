@@ -1,39 +1,84 @@
 import React from "react";
 import { GlobalStyles } from "../../styles/GlobalApp";
 import { Container, Footer } from "./styles";
-import { HeaderAmyi, FormRanking } from "../../components";
+import { HeaderAmyi, FormRanking, ModalRanking } from "../../components";
 
 import Amyi1 from "../../assets/amyi1.png";
 import Amyi2 from "../../assets/amyi2.png";
 import Amyi3 from "../../assets/amyi3.png";
 
 export default function MiniRanking() {
-  const [dataI, setDataI] = React.useState(null);
-  const [dataII, setDataII] = React.useState(null);
-  const [dataIII, setDataIII] = React.useState(null);
+  const [data, setData] = React.useState([]);
+  const [radio, setRadio] = React.useState(false);
+  const [modal, setModal] = React.useState(false);
 
-  
+  const result = [
+    {
+      id: 0,
+      title: "1º",
+      name: "Amyi I",
+      desc: "Grapefruit, greenal, white, ambar",
+      img: Amyi1,
+      note: data[0],
+    },
+    {
+      id: 1,
+      title: "2º",
+      name: "Amyi II",
+      img: Amyi2,
+      desc: "Pink peppercorn angelica lactone, patchouli",
+      note: data[1],
+    },
+    {
+      id: 2,
+      title: "3º",
+      name: "Amyi III",
+      img: Amyi3,
+      desc: "Grapefruit, greenal, white, ambar",
+      note: data[2],
+    },
+  ];
+  result.reverse();
+
+  const handleConclude = () => {
+    if(!radio){
+      alert("Selecione um dos perfumes acima");
+    }else {
+      setModal(true);
+    }
+  };
+
+  const onClinkModal = () => {
+    setModal(false);
+  }
 
   React.useEffect(() => {
-    let storageI = localStorage.getItem('amyiI@webSlider');
-    let storageII = localStorage.getItem('amyiII@webSlider');
-    let storageIII = localStorage.getItem('amyiIII@webSlider');
+    let storageI = localStorage.getItem("amyiI@webSlider");
+    let storageII = localStorage.getItem("amyiII@webSlider");
+    let storageIII = localStorage.getItem("amyiIII@webSlider");
 
-    if(storageI != null || storageII != null || storageIII != null){
+    if (storageI != null || storageII != null || storageIII != null) {
       storageI = JSON.parse(storageI);
-      setDataI(storageI);
+
+      if (storageI != data) {
+        data.push(storageI);
+      }
 
       storageII = JSON.parse(storageII);
-      setDataII(storageII);
+      data.push(storageII);
+
+      if (storageII != data) {
+        data.push(storageII);
+      }
 
       storageIII = JSON.parse(storageIII);
-      setDataIII(storageIII);
-    }else {
-      setDataI(dataI);
-      setDataII(dataII);
-      setDataII(dataIII);
+      data.push(storageIII);
+
+      if (storageIII != data) {
+        data.push(storageIII);
+      }
     }
-  }, [])
+  }, []);
 
   return (
     <>
@@ -49,33 +94,25 @@ export default function MiniRanking() {
             coração:
           </span>
         </div>
-        <FormRanking
-          title="1º"
-          image={Amyi1}
-          alt="Amyi I"
-          name="Amyi I"
-          description="Grapefruit, greenal, white, ambar"
-          note={dataI}
-        />
-        <FormRanking
-          title="2º"
-          image={Amyi2}
-          alt="Amyi II"
-          name="Amyi II"
-          description="Pink peppercorn angelica lactone, patchouli"
-          note={dataII}
-        />
-        <FormRanking
-          title="3º"
-          setImage={true}
-          image={Amyi3}
-          alt="Amyi III"
-          name="Amyi III"
-          description="Grapefruit, greenal, white, ambar"
-          note={dataIII}
-        />
+        {result.map((item) => {
+          return (
+            <FormRanking
+              key={item.id}
+              title={item.title}
+              image={item.img}
+              alt="Amyi I"
+              name={item.name}
+              description={item.desc}
+              note={item.note}
+              setImage={item.id == 2 ? true : false}
+              onChangeRadio={(t) => setRadio(t.target.value)}
+              valueRadio={radio}
+            />
+          );
+        })}
+        {modal && <ModalRanking onClinkModal={onClinkModal}/> }
         <div id="btn-bottom">
-          <button>CONFIRMAR PERFUME ESCOLHIDO</button>
+          <button onClick={handleConclude}>CONFIRMAR PERFUME ESCOLHIDO</button>
           <button>ESCOLHER DEPOIS</button>
         </div>
         <Footer />
