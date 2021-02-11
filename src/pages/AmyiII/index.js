@@ -34,6 +34,9 @@ export default function AmyiII() {
           data={data}
           image={AmyiIcon}
           linkRouter="/amyiii"
+          localCheck="amyiII@webCheck"
+          localSave="amyiII@webSave"
+          localSlider="amyiII@webSlider"
           titleModal="Amyi II - Pimenta rosa, angelica, lactona, patchouli"
           />
       </Container>

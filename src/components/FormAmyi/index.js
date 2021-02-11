@@ -128,6 +128,9 @@ export default function FormAmyi({
   data,
   image,
   linkRouter,
+  localCheck,
+  localSave,
+  localSlider,
   titleModal
 }) {
   const [value, setValue] = React.useState("");
@@ -159,7 +162,7 @@ export default function FormAmyi({
   const handleCheckBox = () => {
     if (value) {
       let getValue = JSON.stringify(value);
-      localStorage.setItem("amyi@webCheck", getValue);
+      localStorage.setItem(localCheck, getValue);
     }
   };
 
@@ -169,7 +172,7 @@ export default function FormAmyi({
     } else {
       setModal(false);
       let getDescription = JSON.stringify(description);
-      localStorage.setItem("amyi@webOthers", getDescription);
+      localStorage.setItem(localSave, getDescription);
     }
   };
 
@@ -187,7 +190,7 @@ export default function FormAmyi({
 
   const handleNext = () => {
     let getData = JSON.stringify(slider);
-    localStorage.setItem("amyi@webSlider", getData);
+    localStorage.setItem(localSlider, getData);
     setModal(false);
     window.location.href = linkRouter;
   };
