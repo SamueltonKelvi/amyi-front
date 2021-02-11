@@ -34,14 +34,18 @@ const Container = styled.div`
       margin: 20px auto;
 
       #label-value {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
         font-size: 12px;
-        /* z-index: 5; */
       }
-      /* #image-check {
-        width: 40%;
+      #image-check {
+        width: 80%;
         height: auto;
-        z-index: 5;
-      } */
+        background-color: white;
+      } 
       .btns {
         padding: 5px;
         border: none;
@@ -50,7 +54,6 @@ const Container = styled.div`
         height: 60px;
         margin: 10px;
         cursor: pointer;
-        /* z-index: 0; */
       }
     }
     #others-colors {
@@ -123,7 +126,7 @@ export default function FormAmyi({
   questionTwo,
   label,
   data,
-  image,
+  image
 }) {
   const [value, setValue] = React.useState("");
   const [slider, setSlider] = React.useState("0");
@@ -154,17 +157,17 @@ export default function FormAmyi({
   const handleCheckBox = () => {
     if (value) {
       let getValue = JSON.stringify(value);
-      localStorage.setItem("amyi@web", getValue);
+      localStorage.setItem("amyi@webCheck", getValue);
     }
   };
 
   const handleSaveProgress = () => {
-    if (value.length === 0) {
+    if (value === "") {
       alert("Selecione no mínimo uma das cores");
     } else {
       setModal(false);
-      let getData = JSON.stringify(value);
-      localStorage.setItem("amyi@web", getData);
+      let getDescription = JSON.stringify(description);
+      localStorage.setItem("amyi@webOthers", getDescription);
     }
   };
 
@@ -182,7 +185,7 @@ export default function FormAmyi({
 
   const handleNext = () => {
     let getData = JSON.stringify(slider);
-    localStorage.setItem("amyi@web", getData);
+    localStorage.setItem("amyi@webSlider", getData);
     setModal(false);
     window.location.href = "/amyii";
   };
@@ -198,7 +201,11 @@ export default function FormAmyi({
           {data.map((item) => {
             return (
               <label id="label-value" key={item.id}>
-                <CheckBoxElement {...item} />
+                {item.value === value ?
+                  <img src={image} id="image-check" alt="Icon Check"/>
+                  :
+                  <CheckBoxElement {...item} />
+                }
                 {item.value}
               </label>
             );

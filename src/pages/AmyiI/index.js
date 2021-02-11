@@ -3,6 +3,8 @@ import { GlobalStyles } from "../../styles/GlobalApp";
 import { Container } from "./styles";
 import { HeaderAmyi,FormAmyi } from "../../components";
 
+ import AmyiIcon from '../../assets/checkmark.svg';
+
 export default function AmyiI() {
   const data = [
     { id: 1, value: "marrom", color: "#6B5D42"},
@@ -30,6 +32,7 @@ export default function AmyiI() {
           questionTwo="De 0 a 10, que nota você daria para a conexão do perfume Amyi II com você"
           label="(selecione quantas cores você desejar)"
           data={data}
+          image={AmyiIcon}
           />
       </Container>
     </>
