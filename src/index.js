@@ -11,10 +11,10 @@ ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <Switch>
-        <Route path="/" exact={true} component={MiniRanking}/>
-        <Route path="/amyi" exact={true} component={AmyiI}/>
+        <Route path="/" exact={true} component={AmyiI}/>
         <Route path="/amyii" exact={true} component={AmyiII}/>
         <Route path="/amyiii" exact={true} component={AmyiIII}/>
+        <Route path="/miniranking" exact={true} component={MiniRanking}/>
       </Switch>
     </BrowserRouter>
   </React.StrictMode>,

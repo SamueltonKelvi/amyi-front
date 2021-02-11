@@ -5,18 +5,18 @@ import { HeaderAmyi,FormAmyi } from "../../components";
 
 export default function AmyiI() {
   const data = [
-    { id: 1, value: "marrom", color: "#6B5D42", checked: false },
-    { id: 2, value: "vermelho", color: "#D66163", checked: false },
-    { id: 3, value: "laranja", color: "#FFA652", checked: false },
-    { id: 4, value: "amarelo", color: "#FFF35A", checked: false },
-    { id: 5, value: "verde", color: "#94DF8C", checked: false },
-    { id: 6, value: "azul", color: "#84BACE", checked: false },
-    { id: 7, value: "roxo", color: "#BD8ACE", checked: false },
-    { id: 8, value: "rosa", color: "#FF82AD", checked: false },
-    { id: 9, value: "bege", color: "#E6D7BD", checked: false },
-    { id: 10, value: "cinza", color: "#C5C6C5", checked: false },
-    { id: 11, value: "preto", color: "#000000", checked: false },
-    { id: 12, value: "white", color: "#FFFFFF", checked: false }
+    { id: 1, value: "marrom", color: "#6B5D42"},
+    { id: 2, value: "vermelho", color: "#D66163"},
+    { id: 3, value: "laranja", color: "#FFA652"},
+    { id: 4, value: "amarelo", color: "#FFF35A"},
+    { id: 5, value: "verde", color: "#94DF8C"},
+    { id: 6, value: "azul", color: "#84BACE"},
+    { id: 7, value: "roxo", color: "#BD8ACE"},
+    { id: 8, value: "rosa", color: "#FF82AD"},
+    { id: 9, value: "bege", color: "#E6D7BD"},
+    { id: 10, value: "cinza", color: "#C5C6C5"},
+    { id: 11, value: "preto", color: "#000000"},
+    { id: 12, value: "white", color: "#FFFFFF"}
   ]
 
   return (

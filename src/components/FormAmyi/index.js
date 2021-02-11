@@ -35,8 +35,13 @@ const Container = styled.div`
 
       #label-value {
         font-size: 12px;
-        z-index: 5;
+        /* z-index: 5; */
       }
+      /* #image-check {
+        width: 40%;
+        height: auto;
+        z-index: 5;
+      } */
       .btns {
         padding: 5px;
         border: none;
@@ -44,7 +49,8 @@ const Container = styled.div`
         width: 60px;
         height: 60px;
         margin: 10px;
-        z-index: 0;
+        cursor: pointer;
+        /* z-index: 0; */
       }
     }
     #others-colors {
@@ -117,11 +123,13 @@ export default function FormAmyi({
   questionTwo,
   label,
   data,
+  image,
 }) {
-  const [value, setValue] = React.useState([]);
+  const [value, setValue] = React.useState("");
   const [slider, setSlider] = React.useState("0");
   const [description, setDescription] = React.useState("");
   const [modal, setModal] = React.useState(false);
+  const [check, setCheck] = React.useState(false);
 
   const CheckBoxElement = (props) => {
     return (
@@ -129,21 +137,25 @@ export default function FormAmyi({
         <input
           value={props.value}
           onChange={(text) => setValue(text.target.value)}
-          type="checkbox"
-          checked={props.checked}
+          onClick={handleCheckBox}
+          type="radio"
+          checked={check}
           className="btns"
-          style={
-            props.checked === true
-              ? { backgroundImage: props.image }
-              : {
-                  backgroundColor: props.color,
-                  position: "relative",
-                  zIndex: -1,
-                }
-          }
+          style={{
+            backgroundColor: props.color,
+            position: "relative",
+            zIndex: -1,
+          }}
         />
       </div>
     );
+  };
+
+  const handleCheckBox = () => {
+    if (value) {
+      let getValue = JSON.stringify(value);
+      localStorage.setItem("amyi@web", getValue);
+    }
   };
 
   const handleSaveProgress = () => {
@@ -155,12 +167,6 @@ export default function FormAmyi({
       localStorage.setItem("amyi@web", getData);
     }
   };
-
-  React.useEffect(() => {
-    if (!value) {
-      localStorage.setItem("amyi@web", value);
-    }
-  }, []);
 
   const handleNextPage = () => {
     if (value.length === 0) {
@@ -198,6 +204,7 @@ export default function FormAmyi({
             );
           })}
         </div>
+
         <div id="others-colors">
           pensei em uma cor diferente
           <input
