@@ -9,6 +9,7 @@ import Amyi3 from "../../assets/amyi3.png";
 
 export default function MiniRanking() {
   const [data, setData] = React.useState([]);
+  const [note, setNote] = React.useState("0");
   const [radio, setRadio] = React.useState(false);
   const [modal, setModal] = React.useState(false);
 
@@ -19,7 +20,7 @@ export default function MiniRanking() {
       name: "Amyi I",
       desc: "Grapefruit, greenal, white, ambar",
       img: Amyi1,
-      note: data[0],
+      note: note[0],
     },
     {
       id: 1,
@@ -27,7 +28,7 @@ export default function MiniRanking() {
       name: "Amyi II",
       img: Amyi2,
       desc: "Pink peppercorn angelica lactone, patchouli",
-      note: data[1],
+      note: note[1],
     },
     {
       id: 2,
@@ -35,11 +36,9 @@ export default function MiniRanking() {
       name: "Amyi III",
       img: Amyi3,
       desc: "Grapefruit, greenal, white, ambar",
-      note: data[2],
+      note: note[2],
     },
   ];
-
-  data.reverse();
 
   const handleConclude = () => {
     if (!radio) {
@@ -55,32 +54,41 @@ export default function MiniRanking() {
 
   const handleAfter = () => {};
 
+  const handleConvert = (e) => {
+    return JSON.parse(e);
+  };
+
+  const handleDataSort = (data) => {
+    let sort = data.sort();
+    let dataOrder = sort.reverse();
+    setNote(dataOrder);
+  };
+
   React.useEffect(() => {
     let storageI = localStorage.getItem("amyiI@webSlider");
     let storageII = localStorage.getItem("amyiII@webSlider");
     let storageIII = localStorage.getItem("amyiIII@webSlider");
 
     if (storageI != null || storageII != null || storageIII != null) {
-      storageI = JSON.parse(storageI);
-
+      handleConvert(storageI);
       if (storageI != data) {
         data.push(storageI);
       }
 
-      storageII = JSON.parse(storageII);
-      data.push(storageII);
-
+      handleConvert(storageII);
       if (storageII != data) {
         data.push(storageII);
       }
 
-      storageIII = JSON.parse(storageIII);
-      data.push(storageIII);
-
+      handleConvert(storageIII);
       if (storageIII != data) {
         data.push(storageIII);
       }
     }
+
+    handleDataSort(data);
+    result.sort();
+    result.reverse();
   }, []);
 
   return (

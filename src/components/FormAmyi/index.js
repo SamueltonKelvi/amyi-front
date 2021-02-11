@@ -161,25 +161,29 @@ export default function FormAmyi({
     );
   };
 
+  const handleConvert = (e) => {
+    return JSON.stringify(e);
+  }
+
   const handleCheckBox = () => {
     if (value) {
-      let getValue = JSON.stringify(value);
+      let getValue = handleConvert(value);
       localStorage.setItem(localCheck, getValue);
     }
   };
 
   const handleSaveProgress = () => {
     if (value === "") {
-      alert("Selecione no mínimo uma das cores");
+      alert("Selecione no mínimo uma das cores ou digite sua cor favorita");
     } else {
       setModal(false);
-      let getDescription = JSON.stringify(description);
+      let getDescription = handleConvert(description);
       localStorage.setItem(localSave, getDescription);
     }
   };
 
   const handleNextPage = () => {
-    if (value.length === 0) {
+    if (value === "") {
       alert("Selecione no mínimo uma das cores");
     } else {
       setModal(true);
@@ -191,7 +195,7 @@ export default function FormAmyi({
   };
 
   const handleNext = () => {
-    let getData = JSON.stringify(slider);
+    let getData = handleConvert(slider);
     localStorage.setItem(localSlider, getData);
     setModal(false);
     window.location.href = linkRouter;
