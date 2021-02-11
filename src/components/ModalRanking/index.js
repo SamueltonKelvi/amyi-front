@@ -57,8 +57,10 @@ const Container = styled.div`
   }
 
   @media (min-width: 720px) {
-    margin: 20% 20%;
-    width: 60%;
+    #content-modal{
+      margin: 20% 20%;
+      width: 60%;
+    }
   }
 `;
 

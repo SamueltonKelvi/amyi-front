@@ -2,12 +2,13 @@ import React from "react";
 import styled from "styled-components";
 
 const Container = styled.div`
+  display: block;
   position: fixed;
   top: 0;
   left: 0;
   z-index: 1040;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
 
   #content-modal {
@@ -57,8 +58,10 @@ const Container = styled.div`
   }
 
   @media (min-width: 720px) {
-    margin: 20% 20%;
-    width: 60%;
+    #content-modal{
+      margin: 20% 25%;
+      width: 50%;
+    }
   }
 `;
 
