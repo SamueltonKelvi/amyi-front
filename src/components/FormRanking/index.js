@@ -53,7 +53,8 @@ export default function FormRanking({
   note,
   alt,
   onChangeRadio,
-  valueRadio
+  valueRadio,
+  onClick
 }) {
   return (
     <Container>
@@ -69,7 +70,7 @@ export default function FormRanking({
       <span>{description}</span>
       <h4>Nota: {note}</h4>
       <label>
-        <input type="radio" onChange={onChangeRadio} value={valueRadio}/>
+        <input type="radio" onChange={onChangeRadio} value={valueRadio} onClick={onClick}/>
         Quero esse perfume
       </label>
     </Container>

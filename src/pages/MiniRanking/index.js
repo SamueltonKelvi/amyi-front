@@ -38,19 +38,22 @@ export default function MiniRanking() {
       note: data[2],
     },
   ];
-  result.reverse();
+
+  data.reverse();
 
   const handleConclude = () => {
-    if(!radio){
+    if (!radio) {
       alert("Selecione um dos perfumes acima");
-    }else {
+    } else {
       setModal(true);
     }
   };
 
   const onClinkModal = () => {
     setModal(false);
-  }
+  };
+
+  const handleAfter = () => {};
 
   React.useEffect(() => {
     let storageI = localStorage.getItem("amyiI@webSlider");
@@ -110,10 +113,10 @@ export default function MiniRanking() {
             />
           );
         })}
-        {modal && <ModalRanking onClinkModal={onClinkModal}/> }
+        {modal && <ModalRanking onClinkModal={onClinkModal} />}
         <div id="btn-bottom">
           <button onClick={handleConclude}>CONFIRMAR PERFUME ESCOLHIDO</button>
-          <button>ESCOLHER DEPOIS</button>
+          <button onClick={handleAfter}>ESCOLHER DEPOIS</button>
         </div>
         <Footer />
       </Container>
