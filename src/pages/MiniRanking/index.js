@@ -8,7 +8,32 @@ import Amyi2 from "../../assets/amyi2.png";
 import Amyi3 from "../../assets/amyi3.png";
 
 export default function MiniRanking() {
-  const [note, setNome] = React.useState(0);
+  const [dataI, setDataI] = React.useState(null);
+  const [dataII, setDataII] = React.useState(null);
+  const [dataIII, setDataIII] = React.useState(null);
+
+  
+
+  React.useEffect(() => {
+    let storageI = localStorage.getItem('amyiI@webSlider');
+    let storageII = localStorage.getItem('amyiII@webSlider');
+    let storageIII = localStorage.getItem('amyiIII@webSlider');
+
+    if(storageI != null || storageII != null || storageIII != null){
+      storageI = JSON.parse(storageI);
+      setDataI(storageI);
+
+      storageII = JSON.parse(storageII);
+      setDataII(storageII);
+
+      storageIII = JSON.parse(storageIII);
+      setDataIII(storageIII);
+    }else {
+      setDataI(dataI);
+      setDataII(dataII);
+      setDataII(dataIII);
+    }
+  }, [])
 
   return (
     <>
@@ -30,7 +55,7 @@ export default function MiniRanking() {
           alt="Amyi I"
           name="Amyi I"
           description="Grapefruit, greenal, white, ambar"
-          note={note}
+          note={dataI}
         />
         <FormRanking
           title="2º"
@@ -38,7 +63,7 @@ export default function MiniRanking() {
           alt="Amyi II"
           name="Amyi II"
           description="Pink peppercorn angelica lactone, patchouli"
-          note={note}
+          note={dataII}
         />
         <FormRanking
           title="3º"
@@ -47,8 +72,12 @@ export default function MiniRanking() {
           alt="Amyi III"
           name="Amyi III"
           description="Grapefruit, greenal, white, ambar"
-          note={note}
+          note={dataIII}
         />
+        <div id="btn-bottom">
+          <button>CONFIRMAR PERFUME ESCOLHIDO</button>
+          <button>ESCOLHER DEPOIS</button>
+        </div>
         <Footer />
       </Container>
     </>
