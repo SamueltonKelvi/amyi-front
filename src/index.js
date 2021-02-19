@@ -6,7 +6,7 @@ import AmyiI from './pages/AmyiI';
 import AmyiII from './pages/AmyiII';
 import AmyiIII from './pages/AmyiIII';
 import MiniRanking from './pages/MiniRanking';
-
+ 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
